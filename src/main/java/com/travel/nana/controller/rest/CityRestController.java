@@ -27,25 +27,25 @@ public class CityRestController {
 
 	@GetMapping
 	public ResponseEntity<List<City>> getAllCities() {
-		List<City> list = cityService.getAllEmployees();
+		List<City> list = cityService.getAllCities();
 		return new ResponseEntity<List<City>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<City> getEmployeeById(@PathVariable("id") String city_id) throws RecordNotFoundException {
-		City entity = cityService.getEmployeeById(city_id);
+	public ResponseEntity<City> getCityById(@PathVariable("id") String cityId) throws RecordNotFoundException {
+		City entity = cityService.getCityById(cityId);
 		return new ResponseEntity<City>(entity, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@PostMapping
-	public ResponseEntity<City> createOrUpdateEmployee(@RequestBody City employee) throws RecordNotFoundException {
-		City updated = cityService.createOrUpdateEmployee(employee);
+	public ResponseEntity<City> createOrUpdateCity(@RequestBody City city) throws RecordNotFoundException {
+		City updated = cityService.createOrUpdateCity(city);
 		return new ResponseEntity<City>(updated, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public HttpStatus deleteEmployeeById(@PathVariable("id") String city_id) throws RecordNotFoundException {
-		cityService.deleteEmployeeById(city_id);
+	public HttpStatus deleteCityById(@PathVariable("id") String cityId) throws RecordNotFoundException {
+		cityService.deleteCityById(cityId);
 		return HttpStatus.FORBIDDEN;
 	}
 }

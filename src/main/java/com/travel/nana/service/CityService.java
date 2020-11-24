@@ -17,41 +17,41 @@ public class CityService {
 	@Autowired
 	private CityRepository cityRepository;
 
-	public List<City> getAllEmployees() {
-		List<City> employeeList = cityRepository.findAll();
-		if (employeeList.size() > 0) {
-			return employeeList;
+	public List<City> getAllCities() {
+		List<City> cityList = cityRepository.findAll();
+		if (cityList.size() > 0) {
+			return cityList;
 		} else {
 			return new ArrayList<City>();
 		}
 	}
 
-	public City getEmployeeById(String city_id) throws RecordNotFoundException {
-		Optional<City> employee = cityRepository.findById(city_id);
-		if (employee.isPresent()) {
-			return employee.get();
+	public City getCityById(String cityId) throws RecordNotFoundException {
+		Optional<City> city = cityRepository.findById(cityId);
+		if (city.isPresent()) {
+			return city.get();
 		} else {
 			throw new RecordNotFoundException("No employee record exist for given id");
 		}
 	}
 
-	public City createOrUpdateEmployee(City entity) throws RecordNotFoundException {
-		if (entity.getCityId() != null) {
-			Optional<City> employee = cityRepository.findById(entity.getCityId());
-			City newEntity = employee.get();
-			newEntity.setCityName(entity.getCityName());
-			newEntity = cityRepository.save(newEntity);
-			return newEntity;
+	public City createOrUpdateCity(City city) throws RecordNotFoundException {
+		if (city.getCityId() != null) {
+			Optional<City> cities = cityRepository.findById(city.getCityId());
+			City newCity = cities.get();
+			newCity.setCityName(city.getCityName());
+			newCity = cityRepository.save(newCity);
+			return newCity;
 		} else {
-			entity = cityRepository.save(entity);
-			return entity;
+			city = cityRepository.save(city);
+			return city;
 		}
 	}
 
-	public void deleteEmployeeById(String city_id) throws RecordNotFoundException {
-		Optional<City> employee = cityRepository.findById(city_id);
-		if (employee.isPresent()) {
-			cityRepository.deleteById(city_id);
+	public void deleteCityById(String cityId) throws RecordNotFoundException {
+		Optional<City> city = cityRepository.findById(cityId);
+		if (city.isPresent()) {
+			cityRepository.deleteById(cityId);
 		} else {
 			throw new RecordNotFoundException("No employee record exist for given id");
 		}
