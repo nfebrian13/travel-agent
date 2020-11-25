@@ -3,10 +3,11 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:mem:file-demo
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: 
+#    url: jdbc:h2:mem:file-demos
+#    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/travel?useSSL=false
+    username: root
+    password: password
   h2:
     console:
       enabled: true
@@ -14,11 +15,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   servlet:
     multipart:
       enabled: true
       file-size-threshold: 2KB
       max-file-size: 200MB
       max-request-size: 215MB
-         
